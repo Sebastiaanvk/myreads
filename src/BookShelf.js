@@ -3,8 +3,9 @@ import React from 'react'
 
 export default class BookShelf extends React.Component {
 
+
   render() {
-    const { books, title } = this.props
+    const { books, title, onUpdateShelf } = this.props
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{title}</h2>
@@ -16,7 +17,7 @@ export default class BookShelf extends React.Component {
                 <div className="book-top">
                   <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                   <div className="book-shelf-changer">
-                    <select>
+                    <select value={book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value)}}>
                       <option value="none" disabled>Move to...</option>
                       <option value="currentlyReading">Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>

@@ -1,13 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
+import PropTypes from 'prop-types'
 
 
 export default class ListBooks extends React.Component {
 
+  static propTypes = {
+    books: PropTypes.array.isRequired
+  }
+
   render() {
 
-    const { books } = this.props
+    const { books, onUpdateShelf} = this.props
     console.log(books)
     let currentlyReadingBooks = books.filter((book)=> book.shelf === 'currentlyReading' )
     let wantToReadBooks = books.filter((book)=> book.shelf === 'wantToRead' )
@@ -20,9 +25,9 @@ export default class ListBooks extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf books={ currentlyReadingBooks } title='Currently Reading'/>
-            <BookShelf books={ wantToReadBooks } title='Want To Read'/>
-            <BookShelf books={ readBooks } title='Read' />
+            <BookShelf books={ currentlyReadingBooks } title='Currently Reading' onUpdateShelf={ onUpdateShelf }/>
+            <BookShelf books={ wantToReadBooks } title='Want To Read' onUpdateShelf={ onUpdateShelf }/>
+            <BookShelf books={ readBooks } title='Read' onUpdateShelf={ onUpdateShelf }/>
           </div>
         </div>
         <Link
