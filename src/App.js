@@ -15,25 +15,43 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book, newShelf) => {
-    let bookIndex = this.state.books.findIndex(function(c) {
-      return c.id === book.id
+    if(this.isBookInCollection(book)) {
+      let bookIndex = this.state.books.findIndex(function(c) {
+        return c.id === book.id
+      })
+      let newBooks = this.state.books
+      newBooks[bookIndex].shelf = newShelf
+      this.setState({ books: newBooks})
+      BooksAPI.update(book, newShelf)
+    }else{
+      book.shelf = newShelf
+      this.setState(state => ({
+        books: state.books.concat([book])
+      }))
+    }
+  }
+
+  isBookInCollection(newBook) {
+    this.state.books.forEach(function(book) {
+      if(newBook.id === book.id){
+        return true
+      }
     })
-    let newBooks = this.state.books
-    newBooks[bookIndex].shelf = newShelf
-    this.setState({ books: newBooks})
-    BooksAPI.update(book, newShelf)
   }
 
   render() {
     return (
       <div className="app">
         <Route path='/search' render={()=>(
-          <Search/>
+          <Search
+            books={this.state.books}
+            onUpdateShelf={this.updateShelf}
+          />
         )}/>
         <Route exact path='/' render={()=>(
           <ListBooks
-            books={this.state.books}
             onUpdateShelf={this.updateShelf}
+            books={this.state.books}
           />
         )}/>
       </div>

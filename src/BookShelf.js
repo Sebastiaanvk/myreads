@@ -9,7 +9,7 @@ export default class BookShelf extends React.Component {
   }
 
   setThumbnail = (book) => {
-    const cover = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "http://i.imgur.com/J5LVHEL.jpg";
+    const cover = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://i2.wp.com/theava.com/wp-content/uploads/2014/11/VantreeseNoPic.jpg?resize=128%2C193";
     return cover
   }
 

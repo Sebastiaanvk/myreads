@@ -20,15 +20,13 @@ export default class Search extends React.Component {
 
   searchBooks = () => {
     BooksAPI.search(this.state.query, 5).then((results)=>{
-      results !== null && (
         this.setState({searchResults:results})
-      )
     })
     console.log(this.state.searchResults)
   }
 
   render() {
-
+    const { onUpdateShelf } = this.props
     const { query, searchResults } = this.state
     return (
       <div className="search-books">
@@ -54,7 +52,7 @@ export default class Search extends React.Component {
           </div>
         </div>
         <div className='search-books-results'>
-          <BookShelf books={ searchResults } title='Search Results'/>
+          <BookShelf books={ searchResults } title='Search Results' onUpdateShelf={ onUpdateShelf }/>
         </div>
       </div>
       )
