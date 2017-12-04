@@ -1,8 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 
 export default class BookShelf extends React.Component {
 
+  static propTypes = {
+    books: PropTypes.array.isRequired
+  }
+
+  setThumbnail = (book) => {
+    const cover = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "http://i.imgur.com/J5LVHEL.jpg";
+    return cover
+  }
 
   render() {
     const { books, title, onUpdateShelf } = this.props
@@ -15,7 +24,7 @@ export default class BookShelf extends React.Component {
             <li key={book.id}>
               <div className="book">
                 <div className="book-top">
-                  <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                  <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
                   <div className="book-shelf-changer">
                     <select value={book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value)}}>
                       <option value="none" disabled>Move to...</option>

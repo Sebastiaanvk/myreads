@@ -25,9 +25,15 @@ export default class ListBooks extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
+            {currentlyReadingBooks.length > 0 && (
             <BookShelf books={ currentlyReadingBooks } title='Currently Reading' onUpdateShelf={ onUpdateShelf }/>
+            )}
+            {wantToReadBooks.length > 0 && (
             <BookShelf books={ wantToReadBooks } title='Want To Read' onUpdateShelf={ onUpdateShelf }/>
+            )}
+            {readBooks.length > 0 && (
             <BookShelf books={ readBooks } title='Read' onUpdateShelf={ onUpdateShelf }/>
+            )}
           </div>
         </div>
         <Link
