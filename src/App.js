@@ -20,6 +20,7 @@ class BooksApp extends React.Component {
       this.setState(state => ({
         books: state.books.concat([book])
       }))
+      BooksAPI.update(book, book.shelf)
     }else{
       let bookIndex = this.state.books.findIndex(function(c) {
         return c.title === book.title
