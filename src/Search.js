@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import BookShelf from './BookShelf'
+import escapeRegExp from 'escape-string-regexp'
 
 
 export default class Search extends React.Component {
@@ -33,12 +34,16 @@ export default class Search extends React.Component {
     books.forEach(function(book) {
       newResults = newResults.filter((result) => result.title !== book.title)
     })
+    books.forEach(function(book) {
+      newResults.concat([book])
+    })
     return newResults
   }
 
   render() {
-    const { onUpdateShelf } = this.props
+    const { onUpdateShelf, books } = this.props
     const { query, searchResults } = this.state
+    const match = new RegExp(escapeRegExp(query), 'i')
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -64,7 +69,7 @@ export default class Search extends React.Component {
         </div>
         {searchResults.length > 0 && (
         <div className='search-books-results'>
-          <BookShelf books={ searchResults } title='Search Results' onUpdateShelf={ onUpdateShelf }/>
+          <BookShelf results={ searchResults } books={ books.filter((book) => match.test(book.title)) } title='Search Results' onUpdateShelf={ onUpdateShelf } onRefreshSearch={ this.searchBooks }/>
         </div>
         )}
       </div>
