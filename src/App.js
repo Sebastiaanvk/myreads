@@ -14,27 +14,29 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then((books) => {this.setState({ books })})
   }
 
-  updateShelf = (book, newShelf) => {
-    if(this.isBookInCollection(book)) {
+  updateShelf = (book, newShelf, originShelf) => {
+    if(originShelf === 'Search Results') {
+      book.shelf = newShelf
+      this.setState(state => ({
+        books: state.books.concat([book])
+      }))
+    }else{
       let bookIndex = this.state.books.findIndex(function(c) {
-        return c.id === book.id
+        return c.title === book.title
       })
       let newBooks = this.state.books
       newBooks[bookIndex].shelf = newShelf
       this.setState({ books: newBooks})
       BooksAPI.update(book, newShelf)
-    }else{
-      book.shelf = newShelf
-      this.setState(state => ({
-        books: state.books.concat([book])
-      }))
     }
   }
 
   isBookInCollection(newBook) {
     this.state.books.forEach(function(book) {
-      if(newBook.id === book.id){
+      if(newBook.title === book.title){
         return true
+      } else {
+        return false
       }
     })
   }

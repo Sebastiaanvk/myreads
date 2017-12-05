@@ -12,17 +12,28 @@ export default class Search extends React.Component {
   }
 
   updateQuery = (e) => {
-    e.preventDefault()
     let query = e.target.value
     this.setState({query: query})
     this.searchBooks()
   }
 
   searchBooks = () => {
-    BooksAPI.search(this.state.query, 5).then((results)=>{
-        this.setState({searchResults:results})
+    BooksAPI.search(this.state.query).then((results)=>{
+        if(typeof results !== 'undefined'){
+        this.setState({searchResults: this.filterResults(results)})
+      } else {
+        this.setState({searchResults: []})
+      }
     })
-    console.log(this.state.searchResults)
+  }
+
+  filterResults = (results) => {
+    let books  = this.props.books
+    let newResults = results
+    books.forEach(function(book) {
+      newResults = newResults.filter((result) => result.title !== book.title)
+    })
+    return newResults
   }
 
   render() {
@@ -51,9 +62,11 @@ export default class Search extends React.Component {
                    value={query}/>
           </div>
         </div>
+        {searchResults.length > 0 && (
         <div className='search-books-results'>
           <BookShelf books={ searchResults } title='Search Results' onUpdateShelf={ onUpdateShelf }/>
         </div>
+        )}
       </div>
       )
   }

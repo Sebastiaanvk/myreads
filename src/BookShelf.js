@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 export default class BookShelf extends React.Component {
 
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    onUpdateShelf: PropTypes.func.isRequired
   }
 
   setThumbnail = (book) => {
@@ -26,12 +27,14 @@ export default class BookShelf extends React.Component {
                 <div className="book-top">
                   <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
                   <div className="book-shelf-changer">
-                    <select value={book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value)}}>
+                    <select value={book.shelf || 'none'} onChange={(event) => {onUpdateShelf(book, event.target.value, title)}}>
                       <option value="none" disabled>Move to...</option>
                       <option value="currentlyReading">Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>
                       <option value="read">Read</option>
+                      {title !== 'Search Results' && (
                       <option value="none">None</option>
+                      )}
                     </select>
                   </div>
                 </div>
