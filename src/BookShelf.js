@@ -25,7 +25,7 @@ export default class BookShelf extends React.Component {
           {title === 'Search Results' ?
             <ol className="books-grid">
             {books.map((book)=> (
-              <li key={book.id}>
+              <li key={book.id + title} className='in-list'>
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
@@ -47,7 +47,7 @@ export default class BookShelf extends React.Component {
               </li>
             ))}
             {results.map((book)=> (
-              <li key={book.id}>
+              <li key={book.id + title}>
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
@@ -72,7 +72,7 @@ export default class BookShelf extends React.Component {
             :
             <ol className="books-grid">
             {books.map((book)=> (
-              <li key={book.id}>
+              <li key={book.id + title}>
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
