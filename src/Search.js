@@ -20,24 +20,21 @@ export default class Search extends React.Component {
 
   searchBooks = () => {
     BooksAPI.search(this.state.query).then((results)=>{
-        if(typeof results !== 'undefined'){
-        this.setState({searchResults: this.filterResults(results)})
-      } else {
-        this.setState({searchResults: []})
-      }
+        this.filterResults(results)
     })
   }
 
   filterResults = (results) => {
-    let books  = this.props.books
-    let newResults = results
-    books.forEach(function(book) {
-      newResults = newResults.filter((result) => result.title !== book.title)
-    })
-    books.forEach(function(book) {
-      newResults.concat([book])
-    })
-    return newResults
+    if(typeof results !== 'undefined'){
+      let books  = this.props.books
+      let newResults = results
+      books.forEach(function(book) {
+        newResults = newResults.filter((result) => result.title !== book.title)
+      })
+      this.setState({searchResults: newResults})
+    } else {
+      this.setState({searchResults: []})
+    }
   }
 
   render() {

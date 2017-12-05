@@ -52,7 +52,7 @@ export default class BookShelf extends React.Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
                     <div className="book-shelf-changer">
-                      <select value={book.shelf || 'none'} onChange={(event) => {onUpdateShelf(book, event.target.value, title); onRefreshSearch();}}>
+                      <select value={book.shelf || 'none'} onChange={(event) => {onUpdateShelf(book, event.target.value, title); onRefreshSearch(results);}}>
                         <option value="none" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
