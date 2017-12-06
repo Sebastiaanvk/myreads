@@ -19,16 +19,16 @@ export default class BookShelf extends React.Component {
           {title === 'Search Results' ?
             <ol className="books-grid">
             {books.map((book)=> (
-              <Book book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} inList='in-list'/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} inList='in-list'/>
             ))}
             {results.map((book)=> (
-              <Book book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} title={title} shelf='none'/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} title={title} shelf='none'/>
               ))}
             </ol>
             :
             <ol className="books-grid">
             {books.map((book)=> (
-              <Book book={book} onUpdateShelf={onUpdateShelf} shelf={book.shelf}/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} shelf={book.shelf}/>
             ))}
             </ol>
           }

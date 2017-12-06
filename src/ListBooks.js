@@ -13,7 +13,6 @@ export default class ListBooks extends React.Component {
   render() {
 
     const { books, onUpdateShelf} = this.props
-    console.log(books)
     let currentlyReadingBooks = books.filter((book)=> book.shelf === 'currentlyReading' )
     let wantToReadBooks = books.filter((book)=> book.shelf === 'wantToRead' )
     let readBooks = books.filter((book)=> book.shelf === 'read')
