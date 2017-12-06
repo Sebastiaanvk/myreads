@@ -30,7 +30,7 @@ export default class BookShelf extends React.Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
                     <div className="book-shelf-changer">
-                      <select value={book.shelf === 'undefined' ? 'None' : book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value)}}>
+                      <select value={book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value)}}>
                         <option value="move-to" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
@@ -50,7 +50,7 @@ export default class BookShelf extends React.Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
                     <div className="book-shelf-changer">
-                      <select value="none" onChange={(event) => {onUpdateShelf(book, event.target.value, title, 'newbook'); onRefreshSearch(results);}}>
+                      <select value="none" onChange={(event) => {onUpdateShelf(book, event.target.value, title); onRefreshSearch(results);}}>
                         <option value="move-to" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
@@ -73,7 +73,7 @@ export default class BookShelf extends React.Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.setThumbnail(book)})` }}></div>
                     <div className="book-shelf-changer">
-                      <select value={book.shelf === 'undefined' ? 'None' : book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value, title)}}>
+                      <select value={book.shelf} onChange={(event) => {onUpdateShelf(book, event.target.value, title)}}>
                         <option value="move-to" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
