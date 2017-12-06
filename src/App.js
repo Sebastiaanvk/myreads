@@ -38,16 +38,6 @@ class BooksApp extends React.Component {
     }
   }
 
-  isBookInCollection(newBook) {
-    this.state.books.forEach(function(book) {
-      if(newBook.title === book.title){
-        return true
-      } else {
-        return false
-      }
-    })
-  }
-
   render() {
     return (
       <div className="app">
