@@ -26,9 +26,15 @@ class BooksApp extends React.Component {
         return c.title === book.title
       })
       let newBooks = this.state.books
-      newBooks[bookIndex].shelf = newShelf
-      this.setState({ books: newBooks})
-      BooksAPI.update(book, newShelf)
+      if(newShelf === 'none') {
+        newBooks.splice(bookIndex, 1)
+        this.setState({books: newBooks})
+        BooksAPI.update(book, newShelf)
+      } else {
+        newBooks[bookIndex].shelf = newShelf
+        this.setState({ books: newBooks})
+        BooksAPI.update(book, newShelf)
+      }
     }
   }
 

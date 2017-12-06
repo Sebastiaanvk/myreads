@@ -66,7 +66,7 @@ export default class Search extends React.Component {
         </div>
         {searchResults.length > 0 && (
         <div className='search-books-results'>
-          <BookShelf results={ searchResults } books={ books.filter((book) => match.test(book.title)) } title='Search Results' onUpdateShelf={ onUpdateShelf } onRefreshSearch={ this.searchBooks }/>
+          <BookShelf results={ searchResults } books={ books.filter((book) => match.test(book.title) && book.shelf !== 'none') } title='Search Results' onUpdateShelf={ onUpdateShelf } onRefreshSearch={ this.searchBooks }/>
         </div>
         )}
       </div>
