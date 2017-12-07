@@ -11,7 +11,7 @@ export default class BookShelf extends React.Component {
   }
 
   render() {
-    const { books, results, title, onUpdateShelf, onRefreshSearch} = this.props
+    const { query, books, results, title, onUpdateShelf, onRefreshSearch} = this.props
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{title}</h2>
@@ -19,16 +19,16 @@ export default class BookShelf extends React.Component {
           {title === 'Search Results' ?
             <ol className="books-grid">
             {books.map((book)=> (
-              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} inList='in-list'/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} inList='in-list' query={query}/>
             ))}
             {results.map((book)=> (
-              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} title={title} shelf='none'/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} title={title} shelf='none' query={query}/>
               ))}
             </ol>
             :
             <ol className="books-grid">
             {books.map((book)=> (
-              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} shelf={book.shelf}/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} query={query}/>
             ))}
             </ol>
           }
