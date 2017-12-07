@@ -29,7 +29,7 @@ export default class Search extends React.Component {
   }
 
   filterResults = (results) => {
-    if(typeof results !== 'undefined'){
+    if(!results.error){
       let books  = this.props.books
       let newResults = results
       books.forEach(function(book) {
