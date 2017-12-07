@@ -10,9 +10,9 @@ export default class Book extends React.Component {
   handleChange = (event) => {
     const {query, book, title, onUpdateShelf, onRefreshSearch} = this.props
     onUpdateShelf(book, event.target.value, title);
-    title === 'Search Results' && (
+    if(title === 'Search Results' || title === 'In Collection') {
       onRefreshSearch(query)
-    );
+    };
   }
 
   render() {

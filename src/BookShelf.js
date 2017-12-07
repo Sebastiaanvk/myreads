@@ -19,7 +19,7 @@ export default class BookShelf extends React.Component {
           {title === 'Search Results' ?
             <ol className="books-grid">
             {books.map((book)=> (
-              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} inList='in-list' query={query}/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} title="In Collection" shelf={book.shelf} inList='in-list' query={query}/>
             ))}
             {results.map((book)=> (
               <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} title={title} shelf='none' query={query}/>
@@ -28,7 +28,7 @@ export default class BookShelf extends React.Component {
             :
             <ol className="books-grid">
             {books.map((book)=> (
-              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} onRefreshSearch={onRefreshSearch} shelf={book.shelf} query={query}/>
+              <Book key={book.id} book={book} onUpdateShelf={onUpdateShelf} title={title} onRefreshSearch={onRefreshSearch} shelf={book.shelf} query={query}/>
             ))}
             </ol>
           }
